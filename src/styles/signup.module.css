@@ -1,0 +1,63 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.Register {
+  display: flex;
+}
+
+.LeftHandSide {
+  background-color: pink;
+  height: 833px;
+  width: 100%;
+}
+
+.LeftHandSide > img {
+  width: 100%;
+}
+
+.RightHandSide {
+  background-color: white;
+  height: 833px;
+  width: 88%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding-left: 5em;
+}
+
+.PageTitle {
+  color: black;
+  margin-bottom: 0;
+  font-size: 5em;
+}
+.Subtext {
+  margin-top: 0;
+  color: black;
+  margin-bottom: 1em;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+}
+
+.formInputs > label {
+  font-size: large;
+}
+
+.formInputs > input {
+  border-radius: 4px;
+  width: 70%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.submitButton {
+  background-image: linear-gradient(to right, blue, white);
+}
