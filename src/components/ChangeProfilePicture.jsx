@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../styles/ChangeProfilePicture.module.css";
+import styles from "../styles/changeProfilePicture.module.css";
 import { images } from "../utils/constants";
 
 export default function ChangeProfilePicture({ changePicture }) {
