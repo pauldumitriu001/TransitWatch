@@ -18,7 +18,11 @@ export default function Register() {
   });
   const navigate = useNavigate();
 
-  function handleSubmit(event) {
+  /**
+   * Registers a new user
+   * @param {*} event
+   */
+  function handleRegister(event) {
     event.preventDefault();
     if (formData.password === formData.confirmPassword) {
       const auth = getAuth();
@@ -43,6 +47,14 @@ export default function Register() {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+
+          if (errorCode === "auth/weak-password") {
+            notification(
+              "Password is to weak!",
+              "Must have at least 6 characters",
+              "danger"
+            );
+          }
 
           if (errorCode === "auth/email-already-in-use") {
             notification(
@@ -70,7 +82,7 @@ export default function Register() {
         <h5 className="subtitle is-5">
           Please enter the neccessary information to register.
         </h5>
-        <form onSubmit={handleSubmit} className={registerStyle.formInputs}>
+        <form onSubmit={handleRegister} className={registerStyle.formInputs}>
           <div className="field" style={{ width: "80%" }}>
             <p className="control has-icons-left has-icons-right">
               <input
@@ -153,12 +165,6 @@ export default function Register() {
           >
             Sign Up
           </button>
-
-          {/* <input
-            type="submit"
-            value="Sign Up"
-            className={registerStyle.submitButton}
-          ></input> */}
         </form>
         <p>
           Already have an account?

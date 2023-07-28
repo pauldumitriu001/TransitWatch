@@ -4,15 +4,29 @@ import { images } from "../utils/constants";
 
 export default function ChangeProfilePicture({ changePicture }) {
   const [modal, setModal] = useState("modal");
+
+  /**
+   * Opens a modal by appending .is-active
+   * @param {*} event
+   */
   function handleOpen(event) {
     event.preventDefault();
     setModal("modal.is-active");
   }
+
+  /**
+   * Closes modal by removing .is-active tag
+   * @param {*} event
+   */
   function handleClose(event) {
     event.preventDefault();
     setModal("modal");
   }
 
+  /**
+   * Closes the modal and passes the selected picture to parent component
+   * @param {*} event
+   */
   function handlePictureChange(event) {
     changePicture(event);
     setModal("modal");
@@ -71,46 +85,6 @@ export default function ChangeProfilePicture({ changePicture }) {
           </footer>
         </div>
       </div>
-      {/* <button onClick={handleClick} className={styles.button}>
-        Select New Profile Picture
-      </button>
-      <PureModal
-        header="Your header"
-        footer={
-          <div className={styles.saveButton}>
-            <button
-              onClick={() => {
-                setModal(false);
-                return true;
-              }}
-            >
-              Save?
-            </button>
-          </div>
-        }
-        isOpen={modal}
-        closeButton="close"
-        closeButtonPosition="bottom"
-        onClose={() => {
-          setModal(false);
-          return true;
-        }}
-      >
-        <div className={styles.menu}>
-          {images.map((image) => {
-            return (
-              <div key={image.link} className={styles.single}>
-                <img
-                  src={image.link}
-                  className={styles.image}
-                  onClick={handlePictureChange}
-                />
-                <p>{image.title}</p>
-              </div>
-            );
-          })}
-        </div>
-      </PureModal> */}
     </>
   );
 }

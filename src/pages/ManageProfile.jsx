@@ -17,6 +17,11 @@ export default function ManageProfile() {
   const isAuthenticated = useAuth();
   const navigate = useNavigate();
 
+  /**
+   * Updates the users profile
+   * @param {*} event
+   * @returns
+   */
   function handleSubmit(event) {
     event.preventDefault();
     const auth = getAuth();
@@ -58,6 +63,10 @@ export default function ManageProfile() {
     navigate("/", { replace: true });
   }
 
+  /**
+   * Updates the users profile picture
+   * @param {*} event
+   */
   function changePicture(event) {
     setFormData({ ...formData, photoURL: event.target.src });
   }

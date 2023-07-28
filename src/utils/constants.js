@@ -1,3 +1,6 @@
+/**
+ * All the subway stations as of July 1 2023
+ */
 export const SubwayStations = [
   [
     {
@@ -328,7 +331,9 @@ export const SubwayStations = [
     },
   ],
 ];
-
+/**
+ * All valid profile pictures
+ */
 export const images = [
   {
     title: "Astronaught",

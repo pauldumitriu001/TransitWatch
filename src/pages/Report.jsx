@@ -29,6 +29,11 @@ export default function Report() {
     if (formData.Line === "") setFormData({ ...formData, Line: "1" });
   }, [formData.Line]);
 
+  /**
+   * Creates a new report
+   * @param {*} event
+   * @returns
+   */
   async function handleSubmit(event) {
     event.preventDefault();
 

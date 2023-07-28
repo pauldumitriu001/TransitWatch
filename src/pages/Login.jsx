@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import useAuthStore from "../stores/auth";
 import ForgotPassword from "../components/ForgotPassword";
 import notification from "../utils/notification";
-import { Link } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = React.useState({
@@ -15,7 +14,11 @@ export default function Login() {
   const setUser = useAuthStore((state) => state.setUser);
   const navigate = useNavigate();
 
-  async function handleSubmit(event) {
+  /**
+   * Logs the user in
+   * @param {*} event
+   */
+  async function handleLogin(event) {
     event.preventDefault();
     const auth = getAuth();
     console.log(formData);
@@ -54,7 +57,7 @@ export default function Login() {
         </div>
         <div className={loginStyles.RightHandSide}>
           <h1 className="title is-1">Log in!</h1>
-          <form onSubmit={handleSubmit} className={loginStyles.formInputs}>
+          <form onSubmit={handleLogin} className={loginStyles.formInputs}>
             <div className="field" style={{ width: "80%" }}>
               <p className="control has-icons-left has-icons-right">
                 <input
