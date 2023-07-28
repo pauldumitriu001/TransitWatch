@@ -1,6 +1,9 @@
 import { nanoid } from "nanoid";
 import QueryBuilder from "./QueryBuilder";
 
+/**
+ * Builds forum post
+ */
 export default class ForumPost {
   constructor(station, title, body, uid, photoURL, username, anonymous) {
     this.station = station;
@@ -22,11 +25,17 @@ export default class ForumPost {
     return this;
   }
 
+  /**
+   * Adds creation date of objcet in epoch time
+   */
   addCreationDate() {
     const dateObject = new Date();
     this.creationDate = dateObject.getTime(); //(epoch time)
   }
 
+  /**
+   * Adds post to database
+   */
   addToDatabase() {
     var query = new QueryBuilder(
       "createForumPost",

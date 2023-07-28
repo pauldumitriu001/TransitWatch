@@ -38,6 +38,9 @@ export default function Post({ post, deleteForumPost, setRerender }) {
     hasUserBoosted();
   }, []);
 
+  /**
+   * Boosts post in the real time database
+   */
   function boostPost() {
     let boostPostQuery = null;
     if (!userBoostedPost) {
@@ -62,6 +65,10 @@ export default function Post({ post, deleteForumPost, setRerender }) {
     setRerender((old) => old + 1);
   }
 
+  /**
+   * Deletes a post
+   * @param {*} event
+   */
   function handleDelete(event) {
     if (event !== null) {
       event.preventDefault();
@@ -72,11 +79,9 @@ export default function Post({ post, deleteForumPost, setRerender }) {
     notification("Post Successfully Deleted!", "", "danger");
   }
 
-  function handleOpen(event) {
-    event.preventDefault();
-    setModal("modal.is-active");
-  }
-
+  /**
+   * Saves a post
+   */
   function save() {
     if (editPost !== "") {
       const updateQuery = new QueryBuilder(
@@ -93,6 +98,19 @@ export default function Post({ post, deleteForumPost, setRerender }) {
     setModal("modal");
   }
 
+  /**
+   * Opens a modal by appending .is-active
+   * @param {*} event
+   */
+  function handleOpen(event) {
+    event.preventDefault();
+    setModal("modal.is-active");
+  }
+
+  /**
+   * Closes modal by removing .is-active tag
+   * @param {*} event
+   */
   function handleClose(event) {
     event.preventDefault();
     setModal("modal");

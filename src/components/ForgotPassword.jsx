@@ -8,14 +8,27 @@ export default function ForgotPassword() {
   const [formData, setFormData] = useState({ email: "" });
   const [modal, setModal] = useState("modal");
 
+  /**
+   * Opens a modal by appending .is-active
+   * @param {*} event
+   */
   function handleOpen(event) {
     event.preventDefault();
     setModal("modal.is-active");
   }
+
+  /**
+   * Closes modal by removing .is-active tag
+   * @param {*} event
+   */
   function handleClose(event) {
     event.preventDefault();
     setModal("modal");
   }
+  /**
+   * Verifies email and initailizes forgot password workflow on FireBase
+   * @param {*} event
+   */
   async function handleSubmit(event) {
     event.preventDefault();
     if (formData.email === "")

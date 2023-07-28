@@ -11,23 +11,33 @@ export default function Home() {
   const setUser = useAuthStore((state) => state.setUser);
   const isAuthenticated = useAuth();
   const navigate = useNavigate();
-  const [modal, setModal] = useState("modal");
   const [line, setLine] = useState([]);
   const [dropdown, setDropDown] = useState("dropdown");
-
+  const subwayMap = new Map();
+  SubwayStations.map((line) => {
+    return line.map((station) =>
+      subwayMap.set(station.displayName, station.databaseName)
+    );
+  });
+  /**
+   * Ensures that logout is only invoked when user select it
+   * @param {*} event
+   */
   function handleLogout(event) {
     event.preventDefault();
     if (event.target.value === "logout") logout();
   }
 
+  /**
+   * Toggles the dropdown menu
+   * @param {*} event
+   */
   function toggle(event) {
     event.preventDefault();
 
     dropdown === "dropdown"
       ? setDropDown("dropdown is-active")
       : setDropDown("dropdown");
-
-    console.log(dropdown);
   }
 
   async function logout() {
@@ -43,23 +53,36 @@ export default function Home() {
       });
   }
 
+  /**
+   * Navigates to report page
+   * @param {*} event
+   */
   function handleReport(event) {
     event.preventDefault();
     navigate("/Report", { replace: true });
   }
 
+  /**
+   * Navigates to account settings page
+   * @param {*} event
+   */
   function moveToAccountSettings(event) {
     event.preventDefault();
     navigate("/AccountSettings", { replace: true });
   }
 
-  function closeModal(event) {
+  /**
+   * Moves to desired page
+   * @param {*} event
+   */
+  function moveToPage(event) {
     event.preventDefault();
-    setModal("modal");
-  }
-  function openModal(event) {
-    event.preventDefault();
-    setModal("modal.is-active");
+    if (
+      event.target.innerText !== undefined ||
+      event.target.innerText !== null
+    ) {
+      navigate(`/SubwayStation/${subwayMap.get(event.target.innerText)}`);
+    }
   }
 
   return (
@@ -110,7 +133,7 @@ export default function Home() {
           <h1>Please Login</h1>
         )}
       </nav>
-      <h5 class="subtitle is-5" style={{ marginTop: "1em" }}>
+      <h5 className="subtitle is-5" style={{ marginTop: "1em" }}>
         Select a Subway Station to view
       </h5>
 
@@ -150,8 +173,9 @@ export default function Home() {
                 SubwayStations[new Number(line) - 1].map((station) => {
                   return (
                     <a
-                      href={`/SubwayStation/${station.databaseName}`}
+                      // href={`/SubwayStation/${station.databaseName}`}
                       className="dropdown-item"
+                      onClick={moveToPage}
                     >
                       {station.displayName}
                     </a>

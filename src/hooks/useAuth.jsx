@@ -10,6 +10,9 @@ export default function useAuth() {
 
   const auth = getAuth();
   useEffect(() => {
+    /**
+     * Verifies if a user is logged in
+     */
     onAuthStateChanged(auth, (user) => {
       if (user) {
         //User is logged in

@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Pagination } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import QueryBuilder from "../utils/QueryBuilder";
+import { useParams } from "react-router-dom";
+
 import Post from "../components/Post";
 import { SubwayStations } from "../utils/constants.js";
 import { useNavigate } from "react-router-dom";
 
 export default function SubwayStation() {
-  const station = window.location.href.toString().split(`/`)[4];
+  const params = useParams();
+  const station = params.NameOfStation;
   let displayName = "";
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -92,6 +95,7 @@ export default function SubwayStation() {
   function handleChangePage(event) {
     event.preventDefault();
     if (event.target.outerText !== undefined && event.target.outerText !== "") {
+      //TODO: Fix bug between paging using buttons
       setPage(parseInt(event.target.outerText));
     }
 
@@ -138,30 +142,32 @@ export default function SubwayStation() {
             <tbody>
               {posts && (
                 <>
-                  {posts[page - 1].map((post) => {
-                    return (
-                      <tr key={post.id}>
-                        <td style={{ display: "flex" }}>
-                          <figure className="image is-32x32">
-                            <img className="is-rounded" src={post.photoURL} />
-                          </figure>
-                          {post.username}
-                        </td>
-                        <td>{post.points}</td>
-                        <>
-                          <Post
-                            post={post}
-                            deleteForumPost={deleteForumPost}
-                            setRerender={setRerender}
-                          />
-                        </>
-                        <td>
-                          {new Date(post.creationDate).getHours()}:
-                          {new Date(post.creationDate).getMinutes()}
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {page > 0 &&
+                    posts[page - 1].map((post) => {
+                      console.log("POST", post);
+                      return (
+                        <tr key={post.id}>
+                          <td style={{ display: "flex" }}>
+                            <figure className="image is-32x32">
+                              <img className="is-rounded" src={post.photoURL} />
+                            </figure>
+                            {post.username}
+                          </td>
+                          <td>{post.points}</td>
+                          <>
+                            <Post
+                              post={post}
+                              deleteForumPost={deleteForumPost}
+                              setRerender={setRerender}
+                            />
+                          </>
+                          <td>
+                            {new Date(post.creationDate).getHours()}:
+                            {new Date(post.creationDate).getMinutes()}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   <Stack spacing={2}>
                     <Pagination
                       count={posts.length}

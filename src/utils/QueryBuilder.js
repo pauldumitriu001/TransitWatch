@@ -16,6 +16,10 @@ export default class QueryBuilder {
     this.obj = obj;
   }
 
+  /**
+   * Executes query
+   * @returns result of query (null if not a GET)
+   */
   async execute() {
     if (this.command === "retrieveSubwayStation") {
       return await this.RetreiveForumPostFromSubwayStation();
@@ -40,6 +44,9 @@ export default class QueryBuilder {
     }
   }
 
+  /**
+   * Updates forum post
+   */
   async UpdateForumPost() {
     const db = getDatabase();
 
