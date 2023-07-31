@@ -50,8 +50,6 @@ export default function Login() {
       <div className={loginStyles.Login}>
         <div className={loginStyles.LeftHandSide}>
           <img
-            rel="preload"
-            as="image"
             src="https://w0.peakpx.com/wallpaper/616/466/HD-wallpaper-subway-nyc-subway.jpg"
             alt="train"
           />
