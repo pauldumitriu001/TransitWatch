@@ -42,7 +42,6 @@ export default function ForgotPassword() {
         })
         .catch((error) => {
           const errorCode = error.code;
-          const errorMessage = error.message;
 
           if (errorCode === "auth/invalid-email") {
             notification(

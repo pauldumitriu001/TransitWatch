@@ -31,7 +31,7 @@ export default function Post({ post, deleteForumPost, setRerender }) {
     checkIfUserIsAdmin();
 
     const hasUserBoosted = async function () {
-      var boolean = await hasUserBoostedPost.execute();
+      let boolean = await hasUserBoostedPost.execute();
       setUserBoostedPost(boolean);
     };
 

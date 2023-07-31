@@ -135,7 +135,7 @@ export default function Report() {
                   {SubwayStations[new Number(formData.Line) - 1].map(
                     (station) => {
                       return (
-                        <option value={station.databaseName}>
+                        <option key={station.databaseName} value={station.databaseName}>
                           {station.displayName}
                         </option>
                       );

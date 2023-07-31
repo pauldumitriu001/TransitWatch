@@ -37,7 +37,7 @@ export default class ForumPost {
    * Adds post to database
    */
   addToDatabase() {
-    var query = new QueryBuilder(
+    let query = new QueryBuilder(
       "createForumPost",
       `SubwayStations/${this.station}/forumPosts/${this.id}`,
       this
