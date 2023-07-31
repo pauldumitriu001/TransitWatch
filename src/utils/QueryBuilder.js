@@ -67,8 +67,9 @@ export default class QueryBuilder {
 
     let snapshot = await get(child(dbRef, this.path));
 
-    if (snapshot.val().userType === "ADMIN") return true;
-    else return false;
+    if (snapshot.val().userType === "ADMIN") {
+      return true};
+    return false;
   }
 
   /**

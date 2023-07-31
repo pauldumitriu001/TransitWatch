@@ -172,8 +172,7 @@ export default function Home() {
               {line.length !== 0 &&
                 SubwayStations[new Number(line) - 1].map((station) => {
                   return (
-                    <a
-                      // href={`/SubwayStation/${station.databaseName}`}
+                    <a key={station.databaseName}
                       className="dropdown-item"
                       onClick={moveToPage}
                     >
