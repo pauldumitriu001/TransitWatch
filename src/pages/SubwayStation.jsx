@@ -144,7 +144,6 @@ export default function SubwayStation() {
                 <>
                   {page > 0 &&
                     posts[page - 1].map((post) => {
-                      console.log("POST", post);
                       return (
                         <tr key={post.id}>
                           <td style={{ display: "flex" }}>

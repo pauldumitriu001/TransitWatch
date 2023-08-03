@@ -21,7 +21,6 @@ export default function Login() {
   async function handleLogin(event) {
     event.preventDefault();
     const auth = getAuth();
-    console.log(formData);
     await signInWithEmailAndPassword(auth, formData.email, formData.password)
       .then((userCredential) => {
         // Signed in

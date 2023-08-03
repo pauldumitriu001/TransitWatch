@@ -28,7 +28,7 @@ export default class QueryBuilder {
     } else if (this.command === "createForumPost") {
       return this.CreateNewForumPost();
     } else if (this.command === "updateForumPost") {
-      return this.UpdateForumPost();
+      return this.CreateNewForumPost();
     } else if (this.command === "deleteForumPost") {
       return this.DeleteForumPost();
     } else if (this.command === "boostPost") {
@@ -45,25 +45,13 @@ export default class QueryBuilder {
   }
 
   /**
-   * Updates forum post
-   */
-  async UpdateForumPost() {
-    const db = getDatabase();
-
-    set(ref(db, this.path), this.obj); //Create a new post under the subway station
-    set(ref(db, `Posts/${this.obj.id}`), this.obj); //create a post in all posts
-    set(
-      ref(db, `Users/${this.obj.createdBy}/PostHistory/${this.obj.id}`),
-      this.obj
-    ); //create a post in post history
-  }
-
-  /**
    *
    * @returns If current user is an admin
    */
   async isAdmin() {
     const dbRef = ref(getDatabase());
+    console.log("isAdmin",this.path)
+
 
     let snapshot = await get(child(dbRef, this.path));
 
@@ -79,6 +67,7 @@ export default class QueryBuilder {
     const dbRef = ref(getDatabase());
     let resu = false;
 
+    console.log("hasUserBoostedPost",this.path)
     let snapshot = await get(child(dbRef, this.path));
     if (snapshot.exists()) {
       let boostedPosts = Object.values(snapshot.val());
